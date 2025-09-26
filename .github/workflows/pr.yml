@@ -3,6 +3,8 @@ on:
 jobs:
   filter:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
     outputs:
       step_result: ${{ steps.changes.outputs.src == 'true' }}
     steps:

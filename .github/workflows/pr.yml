@@ -1,0 +1,21 @@
+on:
+  pull_request: ~
+jobs:
+  filter:
+    runs-on: self-hosted
+    outputs:
+      step_result: ${{ steps.changes.outputs.src == 'true' }}
+    steps:
+      - uses: dorny/paths-filter@v3
+        id: changes
+        with:
+          filters: |
+            src:
+              - 'foo/**'
+              - '.github/**'
+  specs:
+    needs: filter
+    if: ${{ needs.filter.outputs.step_result == 'true' }}
+    runs-on: self-hosted
+    steps:
+      - run: echo hello

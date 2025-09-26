@@ -2,7 +2,7 @@ on:
   pull_request: ~
 jobs:
   filter:
-    runs-on: self-hosted
+    runs-on: ubuntu
     outputs:
       step_result: ${{ steps.changes.outputs.src == 'true' }}
     steps:

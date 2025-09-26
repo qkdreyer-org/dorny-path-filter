@@ -2,7 +2,7 @@ on:
   pull_request: ~
 jobs:
   filter:
-    runs-on: ubuntu
+    runs-on: linux
     outputs:
       step_result: ${{ steps.changes.outputs.src == 'true' }}
     steps:
@@ -16,6 +16,6 @@ jobs:
   specs:
     needs: filter
     if: ${{ needs.filter.outputs.step_result == 'true' }}
-    runs-on: ubuntu
+    runs-on: linux
     steps:
       - run: echo hello
